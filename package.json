@@ -25,5 +25,11 @@
   "homepage": "https://github.com/ovidiubute/metricador-express-middleware#readme",
   "dependencies": {
     "metricador": "*"
+  },
+  "devDependencies": {
+    "express": "^4.13.4"
+  },
+  "peerDependencies": {
+    "express": "4.x"
   }
 }
