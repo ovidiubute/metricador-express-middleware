@@ -47,6 +47,11 @@ function getMiddleware(options) {
         ])
     }
 
+    // Start the Reporter if it's not already running
+    if (!opts.reporter.isRunning()) {
+        opts.reporter.start();
+    }
+
     return function _middleware(req, res, next) {
         var startAt = process.hrtime();
 
