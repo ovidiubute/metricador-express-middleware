@@ -1,0 +1,29 @@
+{
+  "name": "metricador-express-middleware",
+  "version": "0.1.0",
+  "description": "Metricador middleware for Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovidiubute/metricador-express-middleware.git"
+  },
+  "keywords": [
+    "metricador",
+    "metrics",
+    "express",
+    "middleware",
+    "counters"
+  ],
+  "author": "Ovidiu Bute <ovidiu.bute@gmail.com> (http://ovidiubute.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ovidiubute/metricador-express-middleware/issues"
+  },
+  "homepage": "https://github.com/ovidiubute/metricador-express-middleware#readme",
+  "dependencies": {
+    "metricador": "*"
+  }
+}
