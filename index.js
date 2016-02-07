@@ -23,6 +23,7 @@
 
 var metricador = require('metricador');
 var util = require('util');
+var url = require('url');
 
 /**
  * Metricador Express Middleware entry point
@@ -54,6 +55,7 @@ function getMiddleware(options) {
 
     return function _middleware(req, res, next) {
         var startAt = process.hrtime();
+        var path = url.parse(req.url).pathname;
 
         function updateHistogram() {
             res.removeListener("finish", updateHistogram);
@@ -62,7 +64,7 @@ function getMiddleware(options) {
             var diff = process.hrtime(startAt);
             var time = diff[0] * 1e3 + diff[1] * 1e-6;
 
-            var histogram = metricador.registry.histogram(constructMetricName(opts.namespace, req.path));
+            var histogram = metricador.registry.histogram(constructMetricName(opts.namespace, path));
             histogram.update(time);
         }
 
@@ -74,13 +76,7 @@ function getMiddleware(options) {
 }
 
 function constructMetricName(namespace, path) {
-    var pathComponents = path.split('/');
-    pathComponents = pathComponents.splice(1);
-    if (pathComponents.length == 0) {
-        return util.format('%s.%s', namespace, "main.responseTime");
-    } else {
-        return util.format('%s.%s.%s', namespace, pathComponents.join("_"), "responseTime");
-    }
+    return util.format('%s.path.%s.responseTime', namespace, path);
 }
 
 module.exports = getMiddleware;
